@@ -1,5 +1,6 @@
 package me.Hydroxide.TeleportBow;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -14,6 +15,11 @@ public class Main extends JavaPlugin {
 		config.addDefault("alreadyEnabled", "%prefix% &cTeleportBow is already enabled!");
 		config.addDefault("alreadyDisabled", "%prefix% &cTeleportBow is already disabled!");
 		saveDefaultConfig();
+		this.getConfig().options().copyDefaults(true);
+		saveConfig();
+		
+		Bukkit.getPluginManager().registerEvents(new EventListener(), this);
+		getCommand("tpbow").setExecutor(new CommandHandler()	);
 	}
 	
 }
